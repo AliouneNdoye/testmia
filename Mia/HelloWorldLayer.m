@@ -37,74 +37,81 @@
 // on "init" you need to initialize your instance
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
-	if( (self=[super init]) ) {
-		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-
-		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-	
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-		
-		
-		
-		//
-		// Leaderboards and Achievements
-		//
-		
-		// Default font size will be 28 points.
-		[CCMenuItemFont setFontSize:28];
-		
-		// to avoid a retain-cycle with the menuitem and blocks
-		__block id copy_self = self;
-		
-		// Achievement Menu Item using blocks
-		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
-			
-			
-			GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-			achivementViewController.achievementDelegate = copy_self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:achivementViewController animated:YES];
-			
-			[achivementViewController release];
-		}];
-		
-		// Leaderboard Menu Item using blocks
-		CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
-			
-			
-			GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-			leaderboardViewController.leaderboardDelegate = copy_self;
-			
-			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-			
-			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
-			
-			[leaderboardViewController release];
-		}];
-
-		
-		CCMenu *menu = [CCMenu menuWithItems:itemAchievement, itemLeaderboard, nil];
-		
-		[menu alignItemsHorizontallyWithPadding:20];
-		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
-		
-		// Add the menu to the layer
-		[self addChild:menu];
-
-	}
-	return self;
+    
+    // always call “super” init
+    
+    // Apple recommends to re-assign “self” with the “super” return value
+    
+    if( (self=[super init] )) {
+        
+        //add the frames and coordinates to the cache
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"mamanmia.plist"];
+        
+        //load the sprite sheet into a CCSpriteBatchNode object. If you’re adding a new sprite
+        
+        //to your scene, and the image exists in this sprite sheet you should add the sprite
+        
+        //as a child of the same CCSpriteBatchNode object otherwise you could get an error.
+        
+        CCSpriteBatchNode *parrotSheet = [CCSpriteBatchNode batchNodeWithFile:@"mamanmia.png"];
+        
+        
+        
+        //add the CCSpriteBatchNode to your scene
+        
+        [self addChild:parrotSheet];
+        
+        //load each frame included in the sprite sheet into an array for use with the CCAnimation object below
+        
+        NSMutableArray *flyAnimFrames = [NSMutableArray array];
+        
+        for(int i = 1; i <= 2; ++i) {
+            
+            [flyAnimFrames addObject:
+             
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              
+              [NSString stringWithFormat:@"mamanmia%d.png", i]]];
+            
+        }
+        
+        //Create the animation from the frame flyAnimFrames array
+        
+        CCAnimation *flyAnim = [CCAnimation animationWithFrames:flyAnimFrames delay:0.1f];
+        
+        //create a sprite and set it to be the first image in the sprite sheet
+        
+        CCSprite *theParrot = [CCSprite spriteWithSpriteFrameName:@"mamanmia.png"];
+        
+        //set its position to be dead center, i.e. screen width and height divided by 2
+        
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        
+        theParrot.position = ccp(screenSize.width / 2, screenSize.height / 2);
+        
+        //create a looping action using the animation created above. This just continuosly
+        
+        //loops through each frame in the CCAnimation object
+        
+        CCAction *flyAction = [CCRepeatForever actionWithAction:
+                               
+                               [CCAnimate actionWithAnimation:flyAnim restoreOriginalFrame:NO]];
+        
+        //start the action
+        
+        [theParrot runAction:flyAction];
+        
+        //add the sprite to the CCSpriteBatchNode object
+        
+        [parrotSheet addChild:theParrot];
+        
+    }
+    
+    return self;
+    
 }
+
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

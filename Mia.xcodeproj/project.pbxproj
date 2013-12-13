@@ -141,6 +141,8 @@
 		CE7702751792D3EC001A0184 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7702741792D3EC001A0184 /* AppDelegate.m */; };
 		CE7702781792D3EC001A0184 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7702771792D3EC001A0184 /* HelloWorldLayer.m */; };
 		CE77027B1792D3EC001A0184 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE77027A1792D3EC001A0184 /* IntroLayer.m */; };
+		CE7702821792E0C6001A0184 /* mamanmia.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7702811792E0C6001A0184 /* mamanmia.plist */; };
+		CE7702841792E0D2001A0184 /* mamanmia.png in Resources */ = {isa = PBXBuildFile; fileRef = CE7702831792E0D2001A0184 /* mamanmia.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -425,6 +427,8 @@
 		CE7702771792D3EC001A0184 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		CE7702791792D3EC001A0184 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		CE77027A1792D3EC001A0184 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		CE7702811792E0C6001A0184 /* mamanmia.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mamanmia.plist; sourceTree = "<group>"; };
+		CE7702831792E0D2001A0184 /* mamanmia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mamanmia.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,6 +514,8 @@
 				CE7700F01792D3E9001A0184 /* Icon-Small.png */,
 				CE7700F21792D3E9001A0184 /* Icon-Small@2x.png */,
 				CE7700F41792D3E9001A0184 /* Icon.png */,
+				CE7702811792E0C6001A0184 /* mamanmia.plist */,
+				CE7702831792E0D2001A0184 /* mamanmia.png */,
 				CE7700F61792D3E9001A0184 /* Icon@2x.png */,
 				CE7700F81792D3E9001A0184 /* Info.plist */,
 				CE7700F91792D3E9001A0184 /* iTunesArtwork */,
@@ -942,6 +948,8 @@
 				CE7700F71792D3E9001A0184 /* Icon@2x.png in Resources */,
 				CE7700FA1792D3E9001A0184 /* iTunesArtwork in Resources */,
 				CE7702531792D3EB001A0184 /* ChangeLog in Resources */,
+				CE7702821792E0C6001A0184 /* mamanmia.plist in Resources */,
+				CE7702841792E0D2001A0184 /* mamanmia.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
